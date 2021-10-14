@@ -1,0 +1,3 @@
+baseURL = 'http://talkgo-dev.netlify.app/'
+languageCode = 'en-us'
+title = 'Learning'
