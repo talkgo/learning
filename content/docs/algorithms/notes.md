@@ -1,7 +1,9 @@
 ---
-title: 每周一题（更新至 2021-10-14）
+title: 每周一题
 weight: 1
 ---
+
+latest_updated_at: 2021-10-14
 
 # 每周一题
 
