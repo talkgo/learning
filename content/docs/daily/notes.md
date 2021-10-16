@@ -3,7 +3,7 @@ title: 每日打卡
 weight: 1
 ---
 
-latest_updated_at: 2021-10-15
+latest_updated_at: 2021-10-16
 
 ## 每日打卡
 
@@ -34,3 +34,10 @@ latest_updated_at: 2021-10-15
 #打卡内容：
 - [SaaS 102 | 为什么 SaaS 产品需要不断调整定价策略？](https://mp.weixin.qq.com/s/j5-0DvmeBhuWZWTf0qCHbA)
 
+#### 2021-10-16
+
+#早读打卡 #2021-10-16
+#打卡人 杨文
+#本周第5次打卡
+#打卡内容：
+- [做出让人爱不释手的基础软件：可观测性和可交互性](https://mp.weixin.qq.com/s/WEO1y8vg21CXlix8wO28hw)
