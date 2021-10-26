@@ -38,7 +38,7 @@ learnning -> content -> docs -> algorithms -> algs -> 年月日期.md(例如:21�
 
   2. 根据目录找到:learnning -> content -> docs -> algorithms -> algs -> 年月日期key的目录
 
-  3. 创建自己的文件:  dowell.md 
+  3. 创建自己的文件: 例如:xxxx.md 
 
   4. 文件标题
 
