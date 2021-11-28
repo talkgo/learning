@@ -1,6 +1,6 @@
 # Learing
 
-![Learning Pyramid](https://github.com/talkgo/learning/blob/master/images/learning_pyramid2.png)
+![Learning Pyramid](https://github.com/talkgo/learning/blob/main/images/learning_pyramid2.png)
 
 ## Less is More
 
