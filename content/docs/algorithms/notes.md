@@ -8,9 +8,6 @@
 title: 每周一题
 weight: 1
 ---
-
-latest_updated_at: 2021-10-14
-
 # 每周一题
 
 每周一道算法题。
@@ -25,29 +22,27 @@ Go 夜读知识星球每周四晚上会发布一道算法题，周日晚上22点
 2. GitHub Pull Request 参加；
 
 ### 奖励（Go 夜读知识星球会员）：
+1. 参与积分：10 分；
+2. 最佳题解：100 分；
 
-1. 参与奖：1 元；
-2. 优秀奖：20 元；
-
-**注：**：组委会将会根据实际情况，保留对奖励分配的最终解释权。
-
-----
+**注：**：
+- 组委会将拥有最终解释权。
+- 积分可用于向组委会换取礼物。
 
 ### 提交方式
-
-#### github提交
+#### GitHub 提交
 
 * 查看题目
 
- 打开 https://github.com/talkgo/learning
+打开 https://github.com/talkgo/learning
 
-目录: learning/content/docs/algorithms/algs/年月日.md(例如:21年10月21日对应:211021.md)
+目录: `learning/content/docs/algorithms/algs/期数.md`
 
-* fork项目
+* fork 项目
 
 * 创建文件
 
-答案目录为:learning/content/docs/algorithms/algs/年月日+key(例如:21年10月21日对应:211021key)
+答案目录为: `learning/content/docs/algorithms/algs/期数_key`
 
 * 提交注意
  
@@ -55,7 +50,7 @@ Go 夜读知识星球每周四晚上会发布一道算法题，周日晚上22点
 
  ```
  ---
- title: 211021key
+ title: 001_key
  weight: 1
  bookHidden: true
  ---
@@ -67,11 +62,11 @@ Go 夜读知识星球每周四晚上会发布一道算法题，周日晚上22点
 
  相关算法:(选填)
  
- go相关知识:(选填)
+ Go 相关知识:(选填)
  
  示例代码:(必填)
- 
- ```
+
+```
 
 #### 知识星球提交
 
