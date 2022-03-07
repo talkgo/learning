@@ -1,15 +1,9 @@
-<!--
- * @Author: dowell87
- * @Date: 2021-10-28 09:14:48
- * @Descripttion: 
- * @LastEditTime: 2021-10-28 10:08:09
--->
 ---
-title: 每周一题
+title: 每周一题简介
 weight: 1
 ---
 
-# 每周一题
+# 每周一题简介
 
 每周一道算法题。
 
