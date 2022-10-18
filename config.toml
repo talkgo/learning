@@ -1,3 +1,12 @@
 baseURL = 'https://talkgo.dev/'
 languageCode = 'en-us'
 title = 'Learning'
+
+[menu]
+[[menu.before]]
+  name = "推荐开源项目"
+  url = "https://talkgo.dev/recommend.html"
+  weight = 10
+  [menu.before.params]
+    BookFlatSection = true
+  IsSection = true
