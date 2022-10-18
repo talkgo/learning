@@ -84,10 +84,10 @@
     formatter: (_, row) => gridjs.html(`
             <div class="show-name-container d-flex">
              <div class="podcast-logo">
-              <a href="https://${row.cells[1].data}" target="_blank"><img class="lozad" src="${row.cells[3].data}" loading="lazy" /></a>
+              <a href="https://github.com/${row.cells[1].data}" target="_blank"><img class="lozad" src="${row.cells[3].data}" loading="lazy" /></a>
              </div>
              <div class="podcast-title d-flex flex-column">
-              <a target="_blank" href="https://${row.cells[1].data}" class="podcast-name">${row.cells[1].data}</a>
+              <a target="_blank" href="https://github.com/${row.cells[1].data}" class="podcast-name">${row.cells[1].data}</a>
               <p class="podcast-hosts" title="${row.cells[2].data}">${row.cells[2].data}</p>
              </div>
             </div>`)
