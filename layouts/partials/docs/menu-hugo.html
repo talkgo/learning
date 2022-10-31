@@ -10,7 +10,7 @@
 <ul>
   {{ range . }}
   <li>
-    <a href="{{ .URL }}" {{ if not .Page }}target="_blank" rel="noopener"{{ end }}>
+    <a href="{{ .URL }}" {{ if not .Page }} rel="noopener"{{ end }}>
       {{- .Pre -}}
       {{ with .Page }}
         {{ partial "docs/title" .Page }}

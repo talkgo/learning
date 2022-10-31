@@ -10,6 +10,12 @@ type: docs
 ----
 
 {{< columns >}}
+## [推荐开源项目](https://talkgo.dev/recommend.html)
+
+推荐开源项目，页面展示了非常丰富的项目数据和 Top Contributors，方便你快速选择。
+
+<--->
+
 ## 每周一题
 
 Go 夜读知识星球每周四晚上会发布一道算法题
