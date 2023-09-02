@@ -1,6 +1,6 @@
 ---
 weight: 1
 bookCollapseSection: true
-title: "21 天读一本书"
+title: "21 天读书"
 ---
 
