@@ -29,4 +29,4 @@ latest_updated_at: 2023-10-16
 
 1. 2022 年年度推荐书单: https://mp.weixin.qq.com/mp/appmsgalbum?action=getalbum&__biz=MjM5OTAyMTcwMA==&scene=1&album_id=2245300269792165894&count=3#wechat_redirect
 2. JJun的书单「JJun喜欢的书」 https://weread.qq.com/misc/booklist/316853_6LGqpsp2X
-
+3. 周玄九的书单 https://read.laily.net
