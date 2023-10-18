@@ -10,3 +10,14 @@ title = 'Learning'
   [menu.before.params]
     BookFlatSection = true
   IsSection = true
+
+[[menu.before]]
+  name = "推荐图书"
+  url = "https://talkgo.dev/recommend-books.html"
+  weight = 9
+  [menu.before.params]
+    BookFlatSection = true
+  IsSection = true
+
+[markup.goldmark.renderer]
+  unsafe = true # Allow HTML in md files
