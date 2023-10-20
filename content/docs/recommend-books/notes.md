@@ -3,20 +3,13 @@ title: 推荐图书
 weight: 1
 ---
 
-latest_updated_at: 2023-10-17
-
-## 推荐书单 - 汇总
-
-杨文的微信好友们书单: https://weread.qq.com/misc/booklist/15200212_7LZZe76fW
-
-## 推荐方式
-
-1. GitHub Issues: https://github.com/talkgo/learning/issues/new
-2. 推荐图书留评论: https://talkgo.dev/docs/recommend-books/notes/
+latest_updated_at: 2023-10-20
 
 ## 推荐图书
 
 由杨文和他的微信朋友们在微信群内给大家的一些干货推荐，本页面作为一个存档，方便后续加入的朋友。
+
+（以下内容暂时不再更新，请移步： https://talkgo.dev/recommend-books ）
 
 ----
 
@@ -104,4 +97,9 @@ latest_updated_at: 2023-10-17
 2. JJun的书单「JJun喜欢的书」 https://weread.qq.com/misc/booklist/316853_6LGqpsp2X
 3. 周玄九的书单 https://read.laily.net
 4. Dominic 的书单（喜欢人文社科类，非虚构类的可以关注） https://weread.qq.com/misc/booklist/17426519_7bES2doGp
+5. 字节跳动内部的读书会： https://bytedance.feishu.cn/docs/doccnkgGBv3JvoasKPpU7QJfYKb
 
+## 推荐方式
+
+1. GitHub Issues: https://github.com/talkgo/learning/issues/new
+2. 推荐图书留评论: https://talkgo.dev/docs/recommend-books/notes/
