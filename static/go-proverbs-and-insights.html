@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go 语言箴言</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Serif', serif;
+            background-color: #f8f4e5;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23e6dfcc' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 30px;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 36px;
+        }
+        .quote-card {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .quote-chinese {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 24px;
+            color: #2d3748;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .quote-english {
+            font-family: 'Noto Serif', serif;
+            font-size: 18px;
+            color: #2d3748;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        .quote-author {
+            font-style: italic;
+            text-align: right;
+            color: #6b7280;
+            font-size: 0.8em;
+        }
+        .quote-source {
+            text-align: right;
+            color: #6b7280;
+            font-size: 0.8em;
+            margin-top: 4px;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .nav-button {
+            background: none;
+            border: none;
+            color: #3730a3;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        #canvas {
+            display: none;
+        }
+
+        .quote-interpretation {
+            font-family: 'Noto Serif', serif;
+            font-size: 16px;
+            color: #4a5568;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            border-left: 4px solid #3730a3;
+        }
+
+        .interpretation-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+
+        .svg-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .quote-interpretation, .svg-container {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Go 语言箴言</h1>
+        <div id="quoteCard" class="quote-card fade-in"></div>
+        <div id="interpretationContainer">
+            <div id="quoteInterpretation" class="quote-interpretation"></div>
+            <div id="svgContainer" class="svg-container"></div>
+        </div>
+        <div class="navigation">
+            <button id="prevButton" class="nav-button">←</button>
+            <button id="nextButton" class="nav-button">→</button>
+        </div>
+    </div>
+    <canvas id="canvas" width="600" height="800"></canvas>
+
+    <script>
+        const svg_1 = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
+  <style>
+    .background { fill: #1e1e1e; }
+    .title { font-family: 'Courier New', monospace; font-size: 22px; fill: #61dafb; }
+    .subtitle { font-family: 'Courier New', monospace; font-size: 12px; fill: #bb86fc; }
+    .text { font-family: Arial, sans-serif; font-size: 12px; fill: #ffffff; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #ff7b72; }
+    .circuit { stroke: #6e6e6e; fill: none; }
+  </style>
+
+  <rect class="background" width="400" height="600" />
+  
+  <text x="200" y="30" text-anchor="middle" class="title">箴言新解</text>
+  
+  <line x1="10" y1="45" x2="390" y2="45" stroke="#6e6e6e" />
+  
+  <text x="10" y="65" class="subtitle">
+    <tspan x="10" dy="0">"Errors 也是值。"</tspan>
+    <tspan x="10" dy="16">"Errors are values."</tspan>
+    <tspan x="10" dy="16">— Russ Cox / 拉斯·考克斯</tspan>
+  </text>
+  
+  <text x="10" y="140" class="text">
+    <tspan x="10" dy="0">想象一下，如果生活中的错误都是可以兑换的优惠券。</tspan>
+    <tspan x="10" dy="16">考克斯告诉我们：别把 bug 当垃圾扔掉，把它们当作</tspan>
+    <tspan x="10" dy="16">宝贵的经验值！这就是编程界的炼金术：把 Exception </tspan>
+    <tspan x="10" dy="16">变成 Lesson，把 Crash 变成 Cash。每次程序崩溃，</tspan>
+    <tspan x="10" dy="16">都是你在"错误银行"存了一笔巨款。</tspan>
+  </text>
+  
+  <text x="10" y="240" class="text">
+    <tspan x="10" dy="0">Imagine if life's mistakes were redeemable coupons. Cox is</tspan>
+    <tspan x="10" dy="16">telling us: don't throw away bugs like trash, treat them as</tspan>
+    <tspan x="10" dy="16">precious experience points! This is programming alchemy:</tspan>
+    <tspan x="10" dy="16">turning Exceptions into Lessons, Crashes into Cash. Every</tspan>
+    <tspan x="10" dy="16">time your program crashes, you've made a big deposit in</tspan>
+    <tspan x="10" dy="16">the "Bank of Errors".</tspan>
+  </text>
+  
+  <text x="10" y="350" class="code">
+    <tspan x="10" dy="0">func 人生(经历 chan 事件) {</tspan>
+    <tspan x="30" dy="16">for {</tspan>
+    <tspan x="50" dy="16">select {</tspan>
+    <tspan x="50" dy="16">case 成功 := &lt;-经历:</tspan>
+    <tspan x="70" dy="16">庆祝(成功)</tspan>
+    <tspan x="50" dy="16">case 错误 := &lt;-经历:</tspan>
+    <tspan x="70" dy="16">经验值 := 学习(错误) // 错误变黄金</tspan>
+    <tspan x="70" dy="16">升级(经验值)</tspan>
+    <tspan x="50" dy="16">}</tspan>
+    <tspan x="30" dy="16">}</tspan>
+    <tspan x="10" dy="16">}</tspan>
+  </text>
+  
+  <text x="10" y="520" class="text">
+    <tspan x="10" dy="0">结论：程序员不是在调试代码，而是在进行错误投资。</tspan>
+    <tspan x="10" dy="20">Conclusion: Programmers aren't debugging, they're</tspan>
+    <tspan x="10" dy="20">investing in their error portfolio.</tspan>
+  </text>
+  
+  <path class="circuit" d="M5,5 L395,5 L395,595 L5,595 L5,5 M200,5 L200,595 M5,300 L395,300" />
+</svg>`;
+    const svg_2 = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
+  <style>
+    .background { fill: #1e1e1e; }
+    .title { font-family: 'Courier New', monospace; font-size: 22px; fill: #61dafb; }
+    .subtitle { font-family: 'Courier New', monospace; font-size: 12px; fill: #bb86fc; }
+    .text { font-family: Arial, sans-serif; font-size: 12px; fill: #ffffff; }
+    .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #ff7b72; }
+    .circuit { stroke: #6e6e6e; fill: none; }
+  </style>
+
+  <rect class="background" width="400" height="600" />
+  
+  <text x="200" y="30" text-anchor="middle" class="title">箴言新解</text>
+  
+  <line x1="10" y1="45" x2="390" y2="45" stroke="#6e6e6e" />
+  
+  <text x="10" y="65" class="subtitle">
+    <tspan x="10" dy="0">"不要通过共享内存来通信，要通过通信来共享内存。"</tspan>
+    <tspan x="10" dy="16">"Don't communicate by sharing memory, share memory</tspan>
+    <tspan x="10" dy="16">by communicating."</tspan>
+    <tspan x="10" dy="16">-- Rob Pike 罗布·派克</tspan>
+  </text>
+  
+  <text x="10" y="150" class="text">
+    <tspan x="10" dy="0">想象一下，如果大脑是一个多核处理器，而思想是并发运行的线程。</tspan>
+    <tspan x="10" dy="16">派克告诉我们：不要像神经元一样直接共享电信号，而要像八卦群友</tspan>
+    <tspan x="10" dy="16">一样通过微信群来分享"记忆"。这就是并发编程的社交革命：用消息</tspan>
+    <tspan x="10" dy="16">传递取代了共享状态，就像用群聊取代了脑电波。</tspan>
+  </text>
+  
+  <text x="10" y="230" class="text">
+    <tspan x="10" dy="0">Imagine if the brain was a multi-core processor and thoughts were</tspan>
+    <tspan x="10" dy="16">concurrent threads. Pike is telling us: don't share electrical signals</tspan>
+    <tspan x="10" dy="16">directly like neurons, instead share "memories" through WeChat</tspan>
+    <tspan x="10" dy="16">groups like gossip buddies. This is the social revolution of concurrent</tspan>
+    <tspan x="10" dy="16">programming: replacing shared states with message passing, like</tspan>
+    <tspan x="10" dy="16">replacing brainwaves with group chats.</tspan>
+  </text>
+  
+  <text x="10" y="340" class="code">
+    <tspan x="10" dy="0">func 八卦群(消息 chan string) {</tspan>
+    <tspan x="30" dy="16">  for {</tspan>
+    <tspan x="50" dy="16">    记忆 := &lt;-消息</tspan>
+    <tspan x="50" dy="16">    传播(记忆)</tspan>
+    <tspan x="50" dy="16">    // 不要直接窥探他人大脑!</tspan>
+    <tspan x="50" dy="16">    // Don't peek into others' brains directly!</tspan>
+    <tspan x="30" dy="16">  }</tspan>
+    <tspan x="10" dy="16">}</tspan>
+  </text>
+  
+  <text x="10" y="520" class="text">
+    <tspan x="10" dy="0">结论：并发编程就是把独立思考变成了有组织的八卦。</tspan>
+    <tspan x="10" dy="20">Conclusion: Concurrent programming turns independent thinking</tspan>
+    <tspan x="10" dy="20">into organized gossip.</tspan>
+  </text>
+  
+  <path class="circuit" d="M5,5 L395,5 L395,595 L5,595 L5,5 M200,5 L200,595 M5,300 L395,300" />
+</svg>`;
+        const quotes = [
+            {
+                "chinese": "错误是值。",
+                "english": "Errors are values.",
+                "category": "错误处理",
+                "author": "Russ Cox / 拉斯·考克斯",
+                "source": "Go Proverbs (https://go-proverbs.github.io/)",
+                "interpretation": `
+    <p>
+    "Errors are values" 是 Go 语言错误处理哲学的核心。这个理念强调错误不应被视为异常情况，而应作为程序逻辑的一部分来处理。在 Go 中，错误是普通的值，可以被传递、检查和操作，就像其他任何类型的值一样。这种方法鼓励开发者明确地处理每个可能的错误情况，提高了代码的可靠性和可读性。
+    </p>
+    <p>
+    实践中，这体现为使用返回值而非异常来表示错误。例如，许多 Go 函数会返回一个结果和一个错误：\`result, err := someFunction()\`。开发者需要显式地检查 \`err\` 是否为 nil，从而处理可能的错误情况。这种模式使得错误处理成为代码流程的自然部分，而非被隐藏或忽视。
+    </p>
+    <p>
+    这个理念也鼓励了更灵活的错误处理方式，如自定义错误类型、错误包装等，使得错误信息更加丰富和有用。总的来说，"Errors are values" 反映了 Go 语言追求简单性、显式性和可控性的设计哲学。
+    </p>
+`,
+                "svg": svg_1
+            },
+            {
+                "chinese": "大道至简，大智若愚",
+                "english": "The greatest truths are the simplest, and so are the greatest men.",
+                "category": "Go 语言哲学",
+                "author": "Rob Pike 罗布·派克",
+                "source": "Go 语言设计原则",
+                "interpretation": `这句箴言体现了 Go 语言的核心设计理念。Go 追求简洁而强大的语法，避免过度复杂的特性。它的设计哲学是"少即是多"，通过提供有限但精心选择的语言特性，使得开发者能够编写清晰、高效的代码。这种"大智若愚"的方法，使 Go 易学易用，同时又能应对复杂的编程挑战，体现了真正的语言设计智慧。`,
+                "svg": svg_2
+            },
+             {
+                "chinese": "优先考虑可维护性，而非极致性能。",
+                "english": "Prioritize maintainability over peak performance.",
+                "category": "代码可维护性",
+                "author": "Rob Pike / 鲁布·派克",
+                "source": "Go Proverbs (https://go-proverbs.github.io/)",
+                "interpretation": "",
+                "svg": "",
+            },
+        ];
+
+        let currentIndex = 0;
+        let interpretationVisible = false;
+
+        const quoteCard = document.getElementById('quoteCard');
+        const interpretationContainer = document.getElementById('interpretationContainer');
+        const quoteInterpretation = document.getElementById('quoteInterpretation');
+        const svgContainer = document.getElementById('svgContainer');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        function createQuoteCard(quote) {
+            quoteCard.innerHTML = `
+                <div class="quote-chinese">${quote.chinese}</div>
+                <div class="quote-english">${quote.english}</div>
+                ${quote.author ? `<div class="quote-author">— ${quote.author}</div>` : ''}
+                ${quote.source ? `<div class="quote-source">出处: ${formatSource(quote.source)}</div>` : ''}
+            `;
+            quoteInterpretation.innerHTML = `
+                <div class="interpretation-title">箴言新解：</div>
+                <p>${quote.interpretation || 'TODO'}</p>
+            `;
+            svgContainer.innerHTML = quote.svg || '';
+        }
+
+        function formatSource(source) {
+            // 匹配文本中括号内的URL
+            const urlRegex = /(.*?)\((https?:\/\/[^\s)]+)\)/g;
+            
+            return source.replace(urlRegex, (match, text, url) => {
+                return `${text}<a href="${url}" target="_blank" rel="noopener noreferrer">(${url})</a>`;
+            });
+        }
+
+        function drawQuoteCard(quote) {
+            // 设置背景
+            ctx.fillStyle = '#f8f4e5';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 绘制背景图案
+            drawBackgroundPattern();
+
+            // 绘制半透明白色背景
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+            ctx.fillRect(20, 20, canvas.width - 40, canvas.height - 40);
+
+            // 设置字体和颜色
+            ctx.fillStyle = '#2d3748';
+
+            // 绘制中文引用
+            ctx.font = '24px "Ma Shan Zheng"';
+            let yPos = wrapText(ctx, quote.chinese, 40, 60, canvas.width - 80, 36);
+
+            // 绘制英文引用
+            ctx.font = '18px "Noto Serif"';
+            yPos = wrapText(ctx, quote.english, 40, yPos + 20, canvas.width - 80, 28);
+
+            // 绘制作者
+            if (quote.author) {
+                ctx.font = 'italic 14px "Noto Serif"';
+                ctx.textAlign = 'right';
+                ctx.fillText(`— ${quote.author}`, canvas.width - 40, yPos + 30);
+                yPos += 30;
+            }
+
+            // 绘制出处
+            if (quote.source) {
+                ctx.font = '14px "Noto Serif"';
+                ctx.fillStyle = '#6b7280';
+                ctx.textAlign = 'right';
+                // 对于图片，我们总是显示完整的URL
+                const sourceText = `出处: ${quote.source}`;
+                ctx.fillText(sourceText, canvas.width - 40, yPos + 20);
+            }
+
+            // 绘制标题和分类
+            ctx.font = '16px "Ma Shan Zheng"';
+            ctx.fillStyle = '#2d3748';  // 使用与引用相同的颜色
+            ctx.textAlign = 'left';
+            ctx.fillText('Go 语言箴言集', 40, canvas.height - 20);
+            ctx.textAlign = 'right';
+            ctx.fillText(quote.category, canvas.width - 40, canvas.height - 20);
+
+            // 绘制新解
+            yPos += 40;
+            ctx.font = '16px "Noto Serif"';
+            ctx.fillStyle = '#4a5568';
+            ctx.textAlign = 'left';
+            yPos = wrapText(ctx, '箴言新解：', 40, yPos, canvas.width - 80, 24);
+            yPos = wrapText(ctx, quote.interpretation || 'TODO', 40, yPos + 10, canvas.width - 80, 24);
+
+            // 绘制SVG（如果有）
+            if (quote.svg) {
+                yPos += 20;
+                drawSVG(ctx, quote.svg, 40, yPos);
+            }
+        }
+
+        function drawSVG(ctx, svgString, x, y) {
+            // 这个函数需要实现SVG到Canvas的转换
+            // 由于复杂性，这里只是一个占位符
+            ctx.font = '14px Arial';
+            ctx.fillText('SVG图表位置', x, y + 50);
+        }
+
+        function drawBackgroundPattern() {
+            const patternCanvas = document.createElement('canvas');
+            const patternContext = patternCanvas.getContext('2d');
+            patternCanvas.width = 100;
+            patternCanvas.height = 100;
+            
+            patternContext.fillStyle = '#e6dfcc';
+            patternContext.globalAlpha = 0.4;
+            
+            // 绘制简化版的背景图案
+            patternContext.beginPath();
+            patternContext.arc(11, 18, 7, 0, 2 * Math.PI);
+            patternContext.arc(59, 43, 7, 0, 2 * Math.PI);
+            patternContext.arc(34, 90, 3, 0, 2 * Math.PI);
+            patternContext.fill();
+
+            const pattern = ctx.createPattern(patternCanvas, 'repeat');
+            ctx.fillStyle = pattern;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function wrapText(context, text, x, y, maxWidth, lineHeight) {
+            const words = text.split('');
+            let line = '';
+            let currentY = y;
+
+            for (let n = 0; n < words.length; n++) {
+                const testLine = line + words[n];
+                const metrics = context.measureText(testLine);
+                const testWidth = metrics.width;
+                if (testWidth > maxWidth && n > 0) {
+                    context.fillText(line, x, currentY);
+                    line = words[n];
+                    currentY += lineHeight;
+                } else {
+                    line = testLine;
+                }
+            }
+            context.fillText(line, x, currentY);
+            return currentY;  // 返回最后一行的 Y 坐标
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + quotes.length) % quotes.length;
+            createQuoteCard(quotes[currentIndex]);
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % quotes.length;
+            createQuoteCard(quotes[currentIndex]);
+        });
+
+        // 初始化第一个引用
+        createQuoteCard(quotes[0]);
+    </script>
+</body>
+</html>
