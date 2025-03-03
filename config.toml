@@ -4,6 +4,14 @@ title = 'Learning'
 
 [menu]
 [[menu.before]]
+  name = "DeepSeek 内容渲染器"
+  url = "https://talkgo.dev/deepseek-markdown-render.html"
+  weight = 11
+  [menu.before.params]
+    BookFlatSection = true
+  IsSection = true
+
+[[menu.before]]
   name = "推荐开源项目"
   url = "https://talkgo.dev/recommend.html"
   weight = 10
