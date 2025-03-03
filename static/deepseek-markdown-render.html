@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek 内容渲染器</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.0.0/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <!-- 更新到最新的 Mermaid 11.4.1 版本 -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #3a56e4;
+            --secondary-color: #f5f7ff;
+            --text-color: #333;
+            --light-gray: #f0f2f5;
+            --border-color: #ddd;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .header {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .title {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .content-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .editor-container, .preview-container {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .editor, .preview {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            height: 100%;
+        }
+        
+        #markdown-editor {
+            width: 100%;
+            height: 500px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: monospace;
+            resize: vertical;
+        }
+        
+        #preview {
+            min-height: 500px;
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 15px;
+        }
+        
+        /* Markdown 样式 */
+        #preview h1, #preview h2, #preview h3, .share-content h1, .share-content h2, .share-content h3 {
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+            color: var(--primary-color);
+        }
+        
+        #preview p, .share-content p {
+            margin-bottom: 1em;
+        }
+        
+        #preview code, .share-content code {
+            background-color: var(--secondary-color);
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        #preview pre, .share-content pre {
+            background-color: var(--secondary-color);
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin-bottom: 1em;
+        }
+        
+        #preview blockquote, .share-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+            color: #555;
+            margin-bottom: 1em;
+        }
+        
+        /* 表格样式 */
+        #preview table, .share-content table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 1.5em;
+            border: 1px solid var(--border-color);
+        }
+        
+        #preview th, .share-content th {
+            background-color: var(--secondary-color);
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        #preview td, .share-content td {
+            border: 1px solid var(--border-color);
+            padding: 8px 10px;
+        }
+        
+        #preview tr:nth-child(even), .share-content tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        /* 改进列表样式 */
+        #preview ul, #preview ol, .share-content ul, .share-content ol {
+            padding-left: 1.5em; /* 调整列表缩进，确保标记不会太靠左 */
+            margin-bottom: 1em;
+            margin-left: 0.5em; /* 给列表整体添加左边距 */
+        }
+        
+        #preview ul ul, #preview ol ol, #preview ul ol, #preview ol ul,
+        .share-content ul ul, .share-content ol ol, .share-content ul ol, .share-content ol ul {
+            margin-left: 1em; /* 嵌套列表的额外缩进 */
+            margin-bottom: 0; /* 移除嵌套列表的底部间距 */
+        }
+        
+        #preview li, .share-content li {
+            margin-bottom: 0.5em; /* 列表项之间的间距 */
+        }
+        
+        #preview li:last-child, .share-content li:last-child {
+            margin-bottom: 0; /* 最后一个列表项没有底部间距 */
+        }
+        
+        /* 有序列表样式 */
+        #preview ol, .share-content ol {
+            list-style-type: decimal;
+        }
+        
+        #preview ol ol, .share-content ol ol {
+            list-style-type: lower-alpha; /* 二级有序列表使用字母 */
+        }
+        
+        #preview ol ol ol, .share-content ol ol ol {
+            list-style-type: lower-roman; /* 三级有序列表使用罗马数字 */
+        }
+        
+        /* 无序列表样式 */
+        #preview ul, .share-content ul {
+            list-style-type: disc;
+        }
+        
+        #preview ul ul, .share-content ul ul {
+            list-style-type: circle; /* 二级无序列表使用空心圆 */
+        }
+        
+        #preview ul ul ul, .share-content ul ul ul {
+            list-style-type: square; /* 三级无序列表使用方块 */
+        }
+        
+        /* Mermaid 图表样式 */
+        .mermaid {
+            margin: 1.5em 0;
+            text-align: center;
+            background-color: white; /* 确保有纯白背景 */
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto; /* 允许图表水平滚动 */
+        }
+        
+        /* 嵌套 Markdown 样式 */
+        .nested-markdown {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 15px;
+            margin: 1em 0;
+            background-color: #fcfcfc;
+        }
+        
+        .control-panel {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        
+        .control-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        button:hover {
+            background-color: #2a46d4;
+        }
+        
+        .quality-options {
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .quality-options label {
+            font-weight: normal;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        
+        .quality-options input[type="radio"] {
+            margin-right: 5px;
+        }
+        
+        #share-preview-container {
+            margin-top: 20px;
+            display: none;
+        }
+        
+        #share-preview {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .share-header {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        
+        .share-footer {
+            margin-top: 20px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #777;
+        }
+        
+        .share-logo {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .share-content {
+            /* 移除最大高度限制，使内容完全展示 */
+            width: 100%;
+        }
+        
+        /* 添加加载指示器样式 */
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary-color);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 状态信息样式 */
+        .status-message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        
+        .status-error {
+            color: #d32f2f;
+            background-color: #ffebee;
+            border: 1px solid #ffcdd2;
+        }
+        
+        .status-success {
+            color: #388e3c;
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+        }
+        
+        /* 调试信息区域 */
+        .debug-info {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            display: none;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .content-container {
+                flex-direction: column;
+            }
+            
+            .editor-container, .preview-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">DeepSeek 内容渲染器</h1>
+            <p>将 DeepSeek Markdown 内容转换为精美的网页，并生成分享图片</p>
+        </div>
+        
+        <div class="content-container">
+            <div class="editor-container">
+                <div class="editor">
+                    <h2>Markdown 编辑器</h2>
+                    <textarea id="markdown-editor" placeholder="粘贴你的 DeepSeek Markdown 内容..."></textarea>
+                </div>
+            </div>
+            
+            <div class="preview-container">
+                <div class="preview">
+                    <h2>预览</h2>
+                    <div id="preview"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="control-panel">
+            <div class="control-group">
+                <label for="article-title">文章标题</label>
+                <input type="text" id="article-title" placeholder="输入文章标题">
+            </div>
+            
+            <div class="control-group">
+                <label for="author-name">作者/标记</label>
+                <input type="text" id="author-name" placeholder="输入作者名称或标记">
+            </div>
+            
+            <div>
+                <button id="generate-preview-btn">生成分享预览</button>
+                <button id="export-image-btn">导出为图片</button>
+                <button id="toggle-debug-btn">显示调试信息</button>
+            </div>
+            
+            <div class="quality-options" id="quality-options">
+                <span>图片质量: </span>
+                <label>
+                    <input type="radio" name="quality" value="1" id="quality-normal">
+                    标准
+                </label>
+                <label>
+                    <input type="radio" name="quality" value="2" id="quality-high" checked>
+                    高清 (2x)
+                </label>
+                <label>
+                    <input type="radio" name="quality" value="3" id="quality-ultra">
+                    超清 (3x)
+                </label>
+            </div>
+            
+            <div class="status-message" id="status-message" style="display: none;"></div>
+            
+            <div class="loading" id="loading">
+                <div class="loading-spinner"></div>
+                <p>正在生成图片，请稍候...</p>
+            </div>
+            
+            <div class="debug-info" id="debug-info">
+                <h3>调试信息</h3>
+                <div id="debug-content"></div>
+            </div>
+        </div>
+        
+        <div id="share-preview-container">
+            <h2 style="margin-bottom: 15px; text-align: center;">分享预览</h2>
+            <div id="share-preview">
+                <div class="share-header">
+                    <h1 id="share-title"></h1>
+                </div>
+                <div class="share-content" id="share-content"></div>
+                <div class="share-footer">
+                    <div id="share-author"></div>
+                    <div class="share-logo">DeepSeek</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const markdownEditor = document.getElementById('markdown-editor');
+            const preview = document.getElementById('preview');
+            const generatePreviewBtn = document.getElementById('generate-preview-btn');
+            const exportImageBtn = document.getElementById('export-image-btn');
+            const articleTitleInput = document.getElementById('article-title');
+            const authorNameInput = document.getElementById('author-name');
+            const sharePreviewContainer = document.getElementById('share-preview-container');
+            const sharePreview = document.getElementById('share-preview');
+            const shareTitle = document.getElementById('share-title');
+            const shareContent = document.getElementById('share-content');
+            const shareAuthor = document.getElementById('share-author');
+            const loading = document.getElementById('loading');
+            const toggleDebugBtn = document.getElementById('toggle-debug-btn');
+            const debugInfo = document.getElementById('debug-info');
+            const debugContent = document.getElementById('debug-content');
+            const statusMessage = document.getElementById('status-message');
+            const qualityOptions = document.getElementById('quality-options');
+            const qualityNormal = document.getElementById('quality-normal');
+            const qualityHigh = document.getElementById('quality-high');
+            const qualityUltra = document.getElementById('quality-ultra');
+            
+            // 添加调试功能
+            toggleDebugBtn.addEventListener('click', function() {
+                debugInfo.style.display = debugInfo.style.display === 'none' ? 'block' : 'none';
+            });
+            
+            function logDebug(message) {
+                const timestamp = new Date().toISOString().substring(11, 19);
+                const logItem = document.createElement('div');
+                logItem.textContent = `[${timestamp}] ${message}`;
+                debugContent.appendChild(logItem);
+                console.log(`[DEBUG] ${message}`);
+                
+                // 自动滚动到底部
+                debugInfo.scrollTop = debugInfo.scrollHeight;
+            }
+            
+            function showStatus(message, isError = false) {
+                statusMessage.textContent = message;
+                statusMessage.className = isError ? 
+                    'status-message status-error' : 
+                    'status-message status-success';
+                statusMessage.style.display = 'block';
+                
+                // 3秒后自动隐藏成功消息，错误消息保持显示
+                if (!isError) {
+                    setTimeout(() => {
+                        statusMessage.style.display = 'none';
+                    }, 3000);
+                }
+            }
+            
+            // 初始化 Mermaid 并添加调试信息
+            try {
+                logDebug("初始化 Mermaid...");
+                // 使用简化的 Mermaid 配置
+                mermaid.initialize({
+                    startOnLoad: true,       // 重要：自动渲染 mermaid 类元素
+                    theme: 'default',
+                    securityLevel: 'loose',
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+                    flowchart: {
+                        htmlLabels: true,
+                        useMaxWidth: true
+                    }
+                });
+                logDebug(`Mermaid 版本: ${mermaid.version}`);
+            } catch (e) {
+                logDebug(`Mermaid 初始化错误: ${e.message}`);
+                showStatus(`Mermaid 初始化错误: ${e.message}`, true);
+            }
+            
+            // 设置 marked 选项，添加 Mermaid 处理
+            const renderer = new marked.Renderer();
+            
+            // 保存原始渲染器方法
+            const originalCodeRenderer = renderer.code.bind(renderer);
+            
+            // 自定义代码块渲染
+            renderer.code = function(code, language, isEscaped) {
+                if (language === 'mermaid') {
+                    logDebug(`处理 Mermaid 代码块: ${code.substring(0, 50)}...`);
+                    return `<div class="mermaid">${code}</div>`;
+                }
+                if (language === 'markdown') {
+                    logDebug(`处理嵌套的 Markdown 代码块`);
+                    // 渲染嵌套的 Markdown
+                    let nestedContent = marked.parse(code);
+                    return `<div class="nested-markdown">${nestedContent}</div>`;
+                }
+                return originalCodeRenderer(code, language, isEscaped);
+            };
+            
+            marked.setOptions({
+                breaks: true,
+                gfm: true,
+                headerIds: true,
+                highlight: function(code, lang) {
+                    return code;
+                },
+                renderer: renderer
+            });
+            
+            // 实时预览功能
+            markdownEditor.addEventListener('input', function() {
+                renderMarkdown();
+            });
+            
+            function renderMarkdown() {
+                const markdown = markdownEditor.value;
+                try {
+                    logDebug("开始渲染 Markdown...");
+                    let rendered = marked.parse(markdown);
+                    rendered = addSpaceBetweenChineseAndOthers(rendered);
+                    preview.innerHTML = rendered;
+                    
+                    // 使用新的 Mermaid 渲染方法
+                    setTimeout(() => {
+                        try {
+                            // 使用 mermaid.contentLoaded() 触发自动渲染
+                            logDebug("调用 mermaid.contentLoaded() 进行渲染");
+                            mermaid.contentLoaded();
+                            logDebug("Mermaid 渲染完成");
+                            
+                            // 处理嵌套 Markdown 中的 Mermaid
+                            const nestedContainers = preview.querySelectorAll('.nested-markdown');
+                            if (nestedContainers.length > 0) {
+                                logDebug(`处理 ${nestedContainers.length} 个嵌套 Markdown 容器`);
+                                // 在嵌套容器中也触发 Mermaid 渲染
+                                mermaid.contentLoaded();
+                            }
+                        } catch (e) {
+                            logDebug(`Mermaid 渲染错误: ${e.message}`);
+                        }
+                    }, 100);
+                } catch (e) {
+                    logDebug(`Markdown 渲染错误: ${e.message}`);
+                    preview.innerHTML = `<div style="color: red;">渲染错误: ${e.message}</div>`;
+                    showStatus(`Markdown 渲染错误: ${e.message}`, true);
+                }
+            }
+            
+            // 在中文与英文/数字之间添加空格的函数
+            function addSpaceBetweenChineseAndOthers(html) {
+                // 创建一个临时的 DOM 元素来解析 HTML
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+                
+                // 递归处理所有文本节点
+                function processNode(node) {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        // 使用正则表达式在中文和英文/数字之间添加空格
+                        // 匹配模式：
+                        // 1. ([\u4e00-\u9fa5])([a-zA-Z0-9]) - 中文后面跟英文或数字
+                        // 2. ([a-zA-Z0-9])([\u4e00-\u9fa5]) - 英文或数字后面跟中文
+                        const text = node.textContent;
+                        const processed = text
+                            .replace(/([\u4e00-\u9fa5])([a-zA-Z0-9])/g, '$1 $2')
+                            .replace(/([a-zA-Z0-9])([\u4e00-\u9fa5])/g, '$1 $2');
+                        
+                        if (text !== processed) {
+                            node.textContent = processed;
+                        }
+                    } else if (node.nodeType === Node.ELEMENT_NODE) {
+                        // 跳过 pre, code 和 .mermaid 元素内的内容，保持代码格式不变
+                        if (node.tagName.toLowerCase() !== 'pre' && 
+                            node.tagName.toLowerCase() !== 'code' && 
+                            !node.classList.contains('mermaid')) {
+                            Array.from(node.childNodes).forEach(processNode);
+                        }
+                    }
+                }
+                
+                Array.from(tempDiv.childNodes).forEach(processNode);
+                return tempDiv.innerHTML;
+            }
+            
+            // 生成分享预览
+            generatePreviewBtn.addEventListener('click', function() {
+                const markdown = markdownEditor.value;
+                const title = articleTitleInput.value || '未命名文章';
+                const author = authorNameInput.value || '匿名';
+                
+                shareTitle.textContent = title;
+                try {
+                    let rendered = marked.parse(markdown);
+                    rendered = addSpaceBetweenChineseAndOthers(rendered);
+                    shareContent.innerHTML = rendered;
+                    shareAuthor.textContent = author;
+                    
+                    sharePreviewContainer.style.display = 'block';
+                    exportImageBtn.style.display = 'inline-block';
+                    qualityOptions.style.display = 'block'; // 显示图片质量选项
+                    
+                    // 使用相同的 Mermaid 渲染方法
+                    setTimeout(() => {
+                        try {
+                            // 触发 Mermaid 渲染
+                            mermaid.contentLoaded();
+                            logDebug("分享预览 Mermaid 渲染完成");
+                            showStatus("分享预览生成成功！");
+                        } catch (e) {
+                            logDebug(`分享预览 Mermaid 渲染错误: ${e.message}`);
+                            showStatus(`图表渲染错误: ${e.message}`, true);
+                        }
+                    }, 100);
+                    
+                    // 滚动到预览区域
+                    sharePreviewContainer.scrollIntoView({ behavior: 'smooth' });
+                } catch (e) {
+                    logDebug(`分享预览生成错误: ${e.message}`);
+                    showStatus(`生成预览失败: ${e.message}`, true);
+                }
+            });
+            
+            // 导出为图片
+            exportImageBtn.addEventListener('click', function() {
+                // 显示加载指示器
+                loading.style.display = 'block';
+                statusMessage.style.display = 'none'; // 隐藏任何状态消息
+                
+                // 获取选择的质量级别
+                let qualityScale = 2; // 默认高清 (2x)
+                if (qualityNormal.checked) {
+                    qualityScale = 1;
+                } else if (qualityUltra.checked) {
+                    qualityScale = 3;
+                }
+                
+                logDebug(`开始导出图片，质量级别: ${qualityScale}x`);
+                
+                // 延迟一点时间确保 Mermaid 图表完全渲染
+                setTimeout(() => {
+                    try {
+                        // 设置截图选项，确保捕获整个内容
+                        const options = {
+                            scrollX: 0,
+                            scrollY: 0,
+                            windowWidth: document.documentElement.offsetWidth,
+                            windowHeight: document.documentElement.offsetHeight,
+                            allowTaint: true,
+                            useCORS: true,
+                            scale: qualityScale, // 使用选择的质量级别
+                            backgroundColor: null // 确保背景透明
+                        };
+                        
+                        logDebug("开始生成 HTML 画布...");
+                        
+                        html2canvas(sharePreview, options).then(canvas => {
+                            logDebug(`画布生成成功，大小: ${canvas.width} x ${canvas.height}`);
+                            
+                            // 隐藏加载指示器
+                            loading.style.display = 'none';
+                            
+                            // 创建并下载图片
+                            const link = document.createElement('a');
+                            let filename = articleTitleInput.value || 'deepseek-content';
+                            // 添加时间戳和质量标识到文件名
+                            const timestamp = new Date().toISOString().slice(0, 10);
+                            const qualityLabel = qualityScale === 1 ? '' : (qualityScale === 2 ? '-HD' : '-UHD');
+                            filename = `${filename}${qualityLabel}-${timestamp}.png`;
+                            
+                            link.download = filename;
+                            link.href = canvas.toDataURL('image/png');
+                            link.click();
+                            
+                            logDebug(`图片导出成功: ${filename}`);
+                            showStatus(`图片已导出为 ${filename}`);
+                        }).catch(error => {
+                            console.error('导出图片失败:', error);
+                            logDebug(`导出图片失败: ${error.message}`);
+                            loading.style.display = 'none';
+                            showStatus(`导出图片失败: ${error.message}`, true);
+                        });
+                    } catch (e) {
+                        logDebug(`图片导出处理错误: ${e.message}`);
+                        loading.style.display = 'none';
+                        showStatus(`导出图片错误: ${e.message}`, true);
+                    }
+                }, 1000); // 给 Mermaid 更充分的渲染时间
+            });
+            
+            // 设置示例内容
+            markdownEditor.value = `# DeepSeek 内容渲染器示例
+
+这是一个功能演示文档，展示了 Markdown 渲染器的各种功能。
+
+## 表格示例
+
+| 功能 | 描述 | 支持状态 |
+|------|------|----------|
+| 基础 Markdown | 标题、列表、引用等 | ✅ 完全支持 |
+| 表格 | 创建结构化数据表格 | ✅ 完全支持 |
+| Mermaid 图表 | 流程图、时序图等 | ✅ 完全支持 |
+| 嵌套 Markdown | Markdown 中嵌入 Markdown | ✅ 支持 |
+| 中英文混排 | 自动添加空格 | ✅ 支持 |
+
+## Mermaid 图表示例
+
+### 沟通路线图
+
+\`\`\`mermaid
+graph LR
+    A[支付链路重构方案] --> B[翻译为客户支付成功率提升3%]
+    B --> C{PO TL决策}
+    C -->|认可| D[联合立项会签]
+    C -->|质疑| E[制作可视化演示沙盒]
+    E -->|7日内| C
+\`\`\`
+
+### 流程图
+
+\`\`\`mermaid
+graph TD
+    A[开始] --> B{是否有问题?}
+    B -->|是| C[解决问题]
+    B -->|否| D[完成]
+    C --> D
+    D --> E[结束]
+\`\`\`
+
+### 时序图
+
+\`\`\`mermaid
+sequenceDiagram
+    participant 用户
+    participant 系统
+    participant 数据库
+    
+    用户->>系统: 请求数据
+    系统->>数据库: 查询数据
+    数据库-->>系统: 返回结果
+    系统-->>用户: 显示数据
+\`\`\`
+
+## 嵌套 Markdown 示例
+
+\`\`\`markdown
+### 这是嵌套的 Markdown 内容
+
+嵌套内容可以包含各种 Markdown 元素：
+
+1. **粗体文本**
+2. *斜体文本*
+3. ~~删除线文本~~
+
+> 这是嵌套的引用块
+
+- 嵌套的列表项 1
+- 嵌套的列表项 2
+  - 子列表项 A
+  - 子列表项 B
+\`\`\`
+
+## 代码示例
+
+\`\`\`python
+def hello_world():
+    print("Hello from DeepSeek!")
+\`\`\`
+
+## 中英文混排示例
+
+这是一段包含English单词和数字123的中文文本，测试自动添加空格功能。
+
+> 这是一段引用文本，可以用来强调重要内容。
+
+无论您的内容多么复杂，DeepSeek 内容渲染器都能帮助您创建美观的分享图片。`;
+
+            // 立即渲染预览
+            renderMarkdown();
+        });
+    </script>
+</body>
+</html>
