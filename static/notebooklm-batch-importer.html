@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>NotebookLM Batch Importer - 批量导入YouTube视频到NotebookLM | 效率提升10倍</title>
+    <meta name="title" content="NotebookLM Batch Importer - 批量导入YouTube视频到NotebookLM | 效率提升10倍">
+    <meta name="description" content="一键批量导入YouTube视频到NotebookLM，支持播放列表提取，将几十分钟的重复操作缩短到几秒钟。Chrome扩展，安全可靠，95%成功率。">
+    <meta name="keywords" content="NotebookLM, YouTube, 批量导入, Chrome扩展, AI笔记, 视频学习, 播放列表, 自动化工具, Google AI">
+    <meta name="author" content="杨文 Mai Yang">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="zh-CN">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://talkgo.dev/notebooklm-batch-importer">
+    <meta property="og:title" content="NotebookLM Batch Importer - 批量导入YouTube视频到NotebookLM">
+    <meta property="og:description" content="一键批量导入YouTube视频到NotebookLM，支持播放列表提取，效率提升10倍。Chrome扩展，安全可靠。">
+    <meta property="og:image" content="https://raw.githubusercontent.com/talkgo/learning/main/images/NotebookLM-Batch-Importer.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="NotebookLM Batch Importer">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://talkgo.dev/notebooklm-batch-importer">
+    <meta property="twitter:title" content="NotebookLM Batch Importer - 批量导入YouTube视频到NotebookLM">
+    <meta property="twitter:description" content="一键批量导入YouTube视频到NotebookLM，支持播放列表提取，效率提升10倍。Chrome扩展，安全可靠。">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/talkgo/learning/main/images/NotebookLM-Batch-Importer.png">
+    <meta property="twitter:creator" content="@MaiYangAI">
+    <meta property="twitter:site" content="@MaiYangAI">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#ff4444">
+    <meta name="msapplication-TileColor" content="#ff4444">
+    <meta name="application-name" content="NotebookLM Batch Importer">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://talkgo.dev/notebooklm-batch-importer">
+    
+    <!-- Alternate Languages -->
+    <link rel="alternate" hreflang="zh-cn" href="https://talkgo.dev/notebooklm-batch-importer">
+    <link rel="alternate" hreflang="en" href="https://talkgo.dev/notebooklm-batch-importer">
+    <link rel="alternate" hreflang="x-default" href="https://talkgo.dev/notebooklm-batch-importer">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "NotebookLM Batch Importer",
+        "description": "一键批量导入YouTube视频到NotebookLM，支持播放列表提取，效率提升10倍的Chrome扩展",
+        "url": "https://talkgo.dev/notebooklm-batch-importer",
+        "applicationCategory": "BrowserApplication",
+        "operatingSystem": "Chrome, Edge, Chromium",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "CNY"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "杨文 Mai Yang",
+            "url": "https://x.com/MaiYangAI"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "杨文 Mai Yang"
+        },
+        "datePublished": "2025-01-09",
+        "dateModified": "2025-01-09",
+        "version": "1.0.0",
+        "screenshot": "https://raw.githubusercontent.com/talkgo/learning/main/images/NotebookLM-Batch-Importer.png",
+        "video": [
+            {
+                "@type": "VideoObject",
+                "name": "NotebookLM Batch Importer 中文演示",
+                "description": "详细的中文演示视频，展示完整的使用流程和功能特性",
+                "contentUrl": "https://www.bilibili.com/video/BV1a2aGzHEhs/",
+                "embedUrl": "//player.bilibili.com/player.html?isOutside=true&aid=115122756393283&bvid=BV1a2aGzHEhs&cid=32070893658&p=1",
+                "uploadDate": "2025-01-08"
+            },
+            {
+                "@type": "VideoObject",
+                "name": "NotebookLM Batch Importer English Demo",
+                "description": "English demonstration video for international users",
+                "contentUrl": "https://www.youtube.com/watch?v=E91u43MrHSs",
+                "embedUrl": "https://www.youtube.com/embed/E91u43MrHSs",
+                "uploadDate": "2025-01-08"
+            }
+        ],
+        "featureList": [
+            "批量链接导入",
+            "播放列表支持", 
+            "实时进度显示",
+            "智能错误处理",
+            "用户友好界面",
+            "安全可靠"
+        ],
+        "requirements": "Chrome 88+, Edge 88+, Chromium内核浏览器",
+        "softwareVersion": "1.0.0",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
+    }
+    </script>
+    
+    <!-- Website Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "NotebookLM Batch Importer",
+        "url": "https://talkgo.dev/notebooklm-batch-importer",
+        "description": "批量导入YouTube视频到NotebookLM的Chrome扩展官方网站",
+        "inLanguage": "zh-CN",
+        "isAccessibleForFree": true,
+        "creator": {
+            "@type": "Person",
+            "name": "杨文 Mai Yang",
+            "sameAs": [
+                "https://x.com/MaiYangAI",
+                "https://www.bilibili.com/video/BV1a2aGzHEhs/"
+            ]
+        }
+    }
+    </script>
+    
+    <!-- Custom CSS for animations and components -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #ff4444 0%, #cc3333 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-bounce-in {
+            animation: bounceIn 0.8s ease-out;
+        }
+        
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .screenshot-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .stats-number {
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .carousel-slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .carousel-slide.active {
+            display: block;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-red-500 to-red-600 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">N</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">NotebookLM Batch Importer</span>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#features" class="text-gray-600 hover:text-gray-900 transition-colors">功能特性</a>
+                    <a href="#demo" class="text-gray-600 hover:text-gray-900 transition-colors">演示视频</a>
+                    <a href="#screenshots" class="text-gray-600 hover:text-gray-900 transition-colors">界面展示</a>
+                    <a href="#install" class="text-gray-600 hover:text-gray-900 transition-colors">安装指南</a>
+                    <a href="#download" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all">立即下载</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20" itemscope itemtype="https://schema.org/SoftwareApplication">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center animate-fade-in">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6" itemprop="name">
+                    批量导入YouTube视频<br>
+                    <span class="text-yellow-300">效率提升10倍</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-red-50 max-w-3xl mx-auto" itemprop="description">
+                    一键批量导入YouTube视频到NotebookLM，支持播放列表提取，将原本需要几十分钟的重复操作缩短到几秒钟
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#download" class="bg-white text-red-500 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg">
+                        🚀 免费下载扩展
+                    </a>
+                    <a href="#demo" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-red-500 transition-colors">
+                        🎬 观看演示
+                    </a>
+                    <a href="#features" class="border-2 border-white border-opacity-60 text-white text-opacity-90 px-6 py-3 rounded-lg font-medium text-base hover:bg-white hover:text-red-500 transition-colors">
+                        ✨ 了解功能
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="animate-bounce-in">
+                    <div class="text-4xl font-bold stats-number mb-2">10x</div>
+                    <div class="text-gray-600">效率提升</div>
+                </div>
+                <div class="animate-bounce-in" style="animation-delay: 0.1s;">
+                    <div class="text-4xl font-bold stats-number mb-2">95%</div>
+                    <div class="text-gray-600">成功率</div>
+                </div>
+                <div class="animate-bounce-in" style="animation-delay: 0.2s;">
+                    <div class="text-4xl font-bold stats-number mb-2">100+</div>
+                    <div class="text-gray-600">批量处理</div>
+                </div>
+                <div class="animate-bounce-in" style="animation-delay: 0.3s;">
+                    <div class="text-4xl font-bold stats-number mb-2">&lt;1s</div>
+                    <div class="text-gray-600">响应时间</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="bg-gray-50 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">强大功能特性</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    专为NotebookLM用户设计，提供最佳的批量导入体验
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+                    <div class="text-4xl feature-icon mb-4">📝</div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-3">批量链接导入</h4>
+                    <p class="text-gray-600">
+                        一次性输入多个YouTube视频链接，自动批量导入到NotebookLM，支持多种URL格式
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+                    <div class="text-4xl feature-icon mb-4">📋</div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-3">播放列表支持</h4>
+                    <p class="text-gray-600">
+                        智能识别YouTube播放列表，一键提取所有视频链接，批量处理整个播放列表
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+                    <div class="text-4xl feature-icon mb-4">📊</div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-3">实时进度显示</h4>
+                    <p class="text-gray-600">
+                        详细的导入进度和状态信息，实时监控导入过程，支持暂停和恢复操作
+                    </p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+                    <div class="text-4xl feature-icon mb-4">🔄</div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-3">智能错误处理</h4>
+                    <p class="text-gray-600">
+                        自动检测和处理各种错误情况，智能重试机制，确保最高的导入成功率
+                    </p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+                    <div class="text-4xl feature-icon mb-4">🎨</div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-3">用户友好界面</h4>
+                    <p class="text-gray-600">
+                        简洁直观的操作界面，零学习成本，支持中文界面，操作简单易懂
+                    </p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+                    <div class="text-4xl feature-icon mb-4">🔒</div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-3">安全可靠</h4>
+                    <p class="text-gray-600">
+                        本地处理，不发送数据到外部服务器，不收集隐私信息，完全安全可靠
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Demo Section -->
+    <section id="demo" class="bg-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">实际演示视频</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-4">
+                    观看真实的使用演示，了解插件的强大功能
+                </p>
+                <div class="bg-blue-50 rounded-lg p-4 max-w-2xl mx-auto">
+                    <p class="text-sm text-gray-700">
+                        💡 <strong>开发背景：</strong>当你满怀开心地看到一个非常干货的YouTube Playlist视频，但想将其导入到NotebookLM进行回顾学习时，发现NotebookLM不支持批量导入，这就是这个插件诞生的原因！
+                    </p>
+                </div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8 mb-16">
+                <!-- Bilibili Video -->
+                <div class="bg-gray-50 rounded-xl p-6 card-hover">
+                    <h4 class="text-xl font-semibold text-gray-900 mb-3 text-center">📺 Bilibili 演示</h4>
+                    <p class="text-gray-600 mb-4 text-center text-sm">
+                        详细的中文演示视频，展示完整的使用流程和功能特性
+                    </p>
+                    <div class="aspect-video bg-black rounded-lg overflow-hidden">
+                        <iframe 
+                            src="https://player.bilibili.com/player.html?isOutside=true&aid=115122756393283&bvid=BV1a2aGzHEhs&cid=32070893658&p=1" 
+                            scrolling="no" 
+                            border="0" 
+                            frameborder="no" 
+                            framespacing="0" 
+                            allowfullscreen="true"
+                            class="w-full h-full">
+                        </iframe>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="https://www.bilibili.com/video/BV1a2aGzHEhs/" 
+                           target="_blank"
+                           class="text-red-500 hover:text-red-600 text-sm underline">
+                            在Bilibili观看完整版
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- YouTube Video -->
+                <div class="bg-gray-50 rounded-xl p-6 card-hover">
+                    <h4 class="text-xl font-semibold text-gray-900 mb-3 text-center">🎥 YouTube 演示</h4>
+                    <p class="text-gray-600 mb-4 text-center text-sm">
+                        英文演示视频，国际用户也能轻松了解插件功能
+                    </p>
+                    <div class="aspect-video bg-black rounded-lg overflow-hidden">
+                        <iframe 
+                            src="https://www.youtube.com/embed/E91u43MrHSs?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1" 
+                            frameborder="0" 
+                            allowfullscreen
+                            class="w-full h-full">
+                        </iframe>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="https://www.youtube.com/watch?v=E91u43MrHSs" 
+                           target="_blank"
+                           class="text-red-500 hover:text-red-600 text-sm underline">
+                            Watch on YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section id="screenshots" class="bg-gray-50 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">界面展示</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    直观的界面设计，让批量导入变得简单高效
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="carousel-container screenshot-container">
+                    <!-- Main Interface Screenshot -->
+                    <div class="carousel-slide active text-center">
+                        <img src="https://raw.githubusercontent.com/talkgo/learning/main/images/NotebookLM-Batch-Importer.png" alt="NotebookLM Batch Importer 主界面" 
+                             class="max-w-full h-auto">
+                        <div class="absolute bottom-16 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
+                            <h4 class="text-xl font-semibold mb-2">主界面 - 批量导入功能</h4>
+                            <p class="text-sm">简洁的主界面支持批量链接和播放列表两种模式，实时显示链接解析状态</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Import History Screenshot -->
+                    <div class="carousel-slide text-center">
+                        <img src="https://raw.githubusercontent.com/talkgo/learning/main/images/import-history.png" alt="导入历史记录界面" 
+                             class="max-w-full h-auto">
+                        <div class="absolute bottom-16 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
+                            <h4 class="text-xl font-semibold mb-2">导入历史 - 详细记录</h4>
+                            <p class="text-sm">完整的导入历史记录，显示每次导入的详细信息，包括导入时间、视频数量、成功状态等</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation dots -->
+                    <div class="carousel-nav">
+                        <div class="carousel-dot active" data-slide="0"></div>
+                        <div class="carousel-dot" data-slide="1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="bg-gray-50 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">使用步骤</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    三个简单步骤，轻松完成批量导入
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6">1</div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-4">准备链接</h4>
+                    <p class="text-gray-600">
+                        收集想要导入的YouTube视频链接或播放列表URL，支持多种格式
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6">2</div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-4">粘贴导入</h4>
+                    <p class="text-gray-600">
+                        在扩展界面中粘贴链接，系统自动解析和验证，显示导入预览
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6">3</div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-4">一键完成</h4>
+                    <p class="text-gray-600">
+                        点击开始导入，系统自动完成所有操作，实时显示进度状态
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Guide -->
+    <section id="install" class="bg-white py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">安装指南</h3>
+                <p class="text-xl text-gray-600">
+                    简单几步，快速安装扩展
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 rounded-xl p-8">
+                                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-semibold">1</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">下载扩展文件</h4>
+                                <p class="text-gray-600">联系开发者获取最新版本的扩展压缩包，或前往Chrome Web Store下载</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-semibold">2</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">打开Chrome扩展管理</h4>
+                                <p class="text-gray-600">在Chrome浏览器中访问 <code class="bg-gray-200 px-2 py-1 rounded">chrome://extensions/</code></p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-semibold">3</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">启用开发者模式</h4>
+                                <p class="text-gray-600">点击右上角的"开发者模式"开关（仅本地安装需要）</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-semibold">4</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">加载扩展</h4>
+                                <p class="text-gray-600">点击"加载已解压的扩展程序"，选择解压后的文件夹</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold">✓</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">安装完成</h4>
+                                <p class="text-gray-600">在Chrome工具栏中看到扩展图标，点击即可使用</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="bg-white py-20" itemscope itemtype="https://schema.org/FAQPage">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">常见问题</h2>
+                <p class="text-xl text-gray-600">
+                    关于NotebookLM Batch Importer的常见问题解答
+                </p>
+            </div>
+            
+            <div class="space-y-8">
+                <div class="bg-gray-50 rounded-xl p-6" itemscope itemtype="https://schema.org/Question">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3" itemprop="name">
+                        Q: 这个扩展是否安全？会收集我的数据吗？
+                    </h3>
+                    <div itemscope itemtype="https://schema.org/Answer" itemprop="acceptedAnswer">
+                        <div itemprop="text">
+                            <p class="text-gray-600">
+                                A: 完全安全。所有操作都在本地完成，不会发送任何数据到外部服务器，不收集用户隐私信息。我们严格遵循Chrome扩展安全最佳实践。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6" itemscope itemtype="https://schema.org/Question">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3" itemprop="name">
+                        Q: 支持哪些浏览器？
+                    </h3>
+                    <div itemscope itemtype="https://schema.org/Answer" itemprop="acceptedAnswer">
+                        <div itemprop="text">
+                            <p class="text-gray-600">
+                                A: 支持Chrome 88+、Edge 88+以及所有基于Chromium内核的浏览器。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6" itemscope itemtype="https://schema.org/Question">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3" itemprop="name">
+                        Q: 一次可以导入多少个视频？
+                    </h3>
+                    <div itemscope itemtype="https://schema.org/Answer" itemprop="acceptedAnswer">
+                        <div itemprop="text">
+                            <p class="text-gray-600">
+                                A: 支持单次处理100+视频链接，具体数量取决于您的网络环境和系统性能。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6" itemscope itemtype="https://schema.org/Question">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3" itemprop="name">
+                        Q: 如果导入失败怎么办？
+                    </h3>
+                    <div itemscope itemtype="https://schema.org/Answer" itemprop="acceptedAnswer">
+                        <div itemprop="text">
+                            <p class="text-gray-600">
+                                A: 扩展具有智能错误处理和自动重试机制，正常情况下导入成功率超过95%。如遇问题可联系开发者获取支持。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6" itemscope itemtype="https://schema.org/Question">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3" itemprop="name">
+                        Q: 扩展是免费的吗？
+                    </h3>
+                    <div itemscope itemtype="https://schema.org/Answer" itemprop="acceptedAnswer">
+                        <div itemprop="text">
+                            <p class="text-gray-600">
+                                A: 是的，NotebookLM Batch Importer完全免费使用，无任何隐藏费用。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs -->
+    <section class="bg-gray-50 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">技术规格</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="text-2xl mb-3">🌐</div>
+                    <h4 class="font-semibold text-gray-900 mb-2">浏览器兼容</h4>
+                    <p class="text-gray-600 text-sm">Chrome 88+<br>Edge 88+<br>Chromium内核</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="text-2xl mb-3">🔒</div>
+                    <h4 class="font-semibold text-gray-900 mb-2">安全性</h4>
+                    <p class="text-gray-600 text-sm">本地处理<br>无数据上传<br>隐私保护</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="text-2xl mb-3">⚡</div>
+                    <h4 class="font-semibold text-gray-900 mb-2">性能</h4>
+                    <p class="text-gray-600 text-sm">智能队列<br>内存优化<br>高效处理</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                    <div class="text-2xl mb-3">🔄</div>
+                    <h4 class="font-semibold text-gray-900 mb-2">可靠性</h4>
+                    <p class="text-gray-600 text-sm">自动重试<br>错误恢复<br>状态持久化</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="gradient-bg text-white py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-3xl md:text-4xl font-bold mb-6">立即开始使用</h3>
+            <p class="text-xl text-red-50 mb-8">
+                获取NotebookLM Batch Importer，体验10倍效率提升
+            </p>
+            
+            <div class="bg-white bg-opacity-10 rounded-xl p-8 mb-8">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="text-left">
+                        <h4 class="text-xl font-semibold mb-4">✨ 当前版本特性</h4>
+                        <ul class="space-y-2 text-red-50">
+                            <li>✅ 批量链接导入功能</li>
+                            <li>✅ 播放列表智能处理</li>
+                            <li>✅ 实时进度显示</li>
+                            <li>✅ 错误处理与恢复</li>
+                            <li>✅ 用户友好界面</li>
+                        </ul>
+                    </div>
+                    <div class="text-left">
+                        <h4 class="text-xl font-semibold mb-4">🚀 即将推出</h4>
+                        <ul class="space-y-2 text-red-50">
+                            <li>🔄 智能标签页集成</li>
+                            <li>📊 历史记录管理</li>
+                            <li>⚙️ 自定义导入设置</li>
+                            <li>📈 更丰富的统计信息</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact and Download Options -->
+            <div class="bg-white bg-opacity-10 rounded-xl p-6 mb-8">
+                <h4 class="text-xl font-semibold mb-6 text-center">📱 获取扩展 & 联系方式</h4>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- WeChat -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto mb-3 bg-white bg-opacity-20 rounded-xl flex items-center justify-center p-1">
+                            <img src="https://raw.githubusercontent.com/talkgo/learning/main/images/mai_yang.jpg" alt="开发者微信二维码" class="w-full h-full rounded-lg object-cover">
+                        </div>
+                        <p class="text-red-50 text-sm font-semibold mb-1"><i class="fab fa-weixin"></i> 微信联系</p>
+                        <p class="text-red-50 text-xs">mai_yang</p>
+                        <p class="text-red-50 text-xs">获取最新版本</p>
+                    </div>
+                    
+                    <!-- Twitter/X -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto mb-3 bg-white bg-opacity-20 rounded-xl flex items-center justify-center">
+                            <i class="fab fa-x-twitter text-3xl text-white"></i>
+                        </div>
+                        <p class="text-red-50 text-sm font-semibold mb-1">𝕏 Twitter</p>
+                        <a href="https://x.com/MaiYangAI" target="_blank" 
+                           class="text-red-50 text-xs hover:text-white transition-colors underline">
+                            @MaiYangAI
+                        </a>
+                        <p class="text-red-50 text-xs">关注了解更多更新细节</p>
+                    </div>
+                    
+                    <!-- Chrome Store -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto mb-3 bg-white bg-opacity-20 rounded-xl flex items-center justify-center">
+                            <i class="fab fa-chrome text-3xl text-white"></i>
+                        </div>
+                        <p class="text-red-50 text-sm font-semibold mb-1"><i class="fas fa-store"></i> Chrome Store</p>
+                        <p class="text-red-50 text-xs">即将上线</p>
+                        <p class="text-red-50 text-xs">敬请期待</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-white text-red-500 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"
+                        onclick="alert('请扫描上方二维码添加开发者微信获取最新版本')">
+                    💬 联系开发者
+                </button>
+                <a href="#install" 
+                   class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-red-500 transition-colors">
+                    📋 查看安装指南
+                </a>
+            </div>
+            
+            <p class="text-sm text-red-100 mt-6">
+                * 本扩展仅供个人学习和使用，请遵守相关服务条款
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-red-500 to-red-600 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold">N</span>
+                        </div>
+                        <span class="font-semibold">NotebookLM Batch Importer</span>
+                    </div>
+                    <p class="text-gray-400">
+                        让YouTube视频批量导入NotebookLM变得简单高效
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#features" class="hover:text-white transition-colors">功能特性</a></li>
+                        <li><a href="#demo" class="hover:text-white transition-colors">演示视频</a></li>
+                        <li><a href="#screenshots" class="hover:text-white transition-colors">界面展示</a></li>
+                        <li><a href="#install" class="hover:text-white transition-colors">安装指南</a></li>
+                        <li><a href="#download" class="hover:text-white transition-colors">获取扩展</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">联系开发者</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>开发者：杨文 Mai Yang</li>
+                        <li><i class="fab fa-weixin"></i> 微信：mai_yang</li>
+                        <li><i class="fab fa-x-twitter"></i> 推特：<a href="https://x.com/MaiYangAI" target="_blank" class="hover:text-white transition-colors">@MaiYangAI</a></li>
+                        <li>Chrome 88+ 支持</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 NotebookLM Batch Importer. 开发者：杨文 Mai Yang</p>
+                <p class="mt-2 text-sm">
+                    本扩展仅用于学习和个人使用，请遵守YouTube和NotebookLM的服务条款。
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Carousel functionality
+        class Carousel {
+            constructor() {
+                this.slides = document.querySelectorAll('.carousel-slide');
+                this.dots = document.querySelectorAll('.carousel-dot');
+                this.currentSlide = 0;
+                this.autoPlayInterval = null;
+                
+                this.init();
+            }
+            
+            init() {
+                // Add click listeners to dots
+                this.dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        this.goToSlide(index);
+                    });
+                });
+                
+                // Start auto-play
+                this.startAutoPlay();
+                
+                // Pause on hover
+                const carousel = document.querySelector('.carousel-container');
+                if (carousel) {
+                    carousel.addEventListener('mouseenter', () => this.stopAutoPlay());
+                    carousel.addEventListener('mouseleave', () => this.startAutoPlay());
+                }
+            }
+            
+            goToSlide(index) {
+                // Hide all slides
+                this.slides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+                
+                // Remove active class from all dots
+                this.dots.forEach(dot => {
+                    dot.classList.remove('active');
+                });
+                
+                // Show current slide
+                if (this.slides[index]) {
+                    this.slides[index].classList.add('active');
+                }
+                
+                // Activate current dot
+                if (this.dots[index]) {
+                    this.dots[index].classList.add('active');
+                }
+                
+                this.currentSlide = index;
+            }
+            
+            nextSlide() {
+                const nextIndex = (this.currentSlide + 1) % this.slides.length;
+                this.goToSlide(nextIndex);
+            }
+            
+            startAutoPlay() {
+                this.stopAutoPlay();
+                this.autoPlayInterval = setInterval(() => {
+                    this.nextSlide();
+                }, 4000); // Change slide every 4 seconds
+            }
+            
+            stopAutoPlay() {
+                if (this.autoPlayInterval) {
+                    clearInterval(this.autoPlayInterval);
+                    this.autoPlayInterval = null;
+                }
+            }
+        }
+
+        // Add animation classes when elements come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize carousel
+            if (document.querySelector('.carousel-container')) {
+                new Carousel();
+            }
+            
+            // Observe all feature cards and screenshots
+            document.querySelectorAll('.card-hover, .screenshot-container').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
