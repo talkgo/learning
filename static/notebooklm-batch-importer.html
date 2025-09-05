@@ -55,8 +55,6 @@
     <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <script async src="//changkun.de/urlstat/client.js"></script>
-
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
@@ -229,12 +227,12 @@
         }
         
         .carousel-slide {
-            display: none;
+            display: none !important;
             animation: fadeIn 0.5s ease-in-out;
         }
         
         .carousel-slide.active {
-            display: block;
+            display: block !important;
         }
         
         .carousel-nav {
@@ -515,30 +513,68 @@
             
             <div class="max-w-4xl mx-auto">
                 <div class="carousel-container screenshot-container">
-                    <!-- Main Interface Screenshot -->
-                    <div class="carousel-slide active text-center">
-                        <img src="https://raw.githubusercontent.com/talkgo/learning/main/images/NotebookLM-Batch-Importer.png" alt="NotebookLM Batch Importer 主界面" 
-                             class="max-w-full h-auto">
-                        <div class="absolute bottom-16 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
-                            <h4 class="text-xl font-semibold mb-2" data-i18n="screenshots.main.title">主界面 - 批量导入功能</h4>
-                            <p class="text-sm" data-i18n="screenshots.main.description">简洁的主界面支持批量链接和播放列表两种模式，实时显示链接解析状态</p>
+                    <!-- Screenshots will be dynamically generated based on language -->
+                    <div id="screenshots-container">
+                        <!-- Chinese screenshots (2 slides) -->
+                        <div class="carousel-slide text-center" data-lang="zh" data-slide="0" style="display: none;">
+                            <img src="https://raw.githubusercontent.com/talkgo/learning/main/images/NotebookLM-Batch-Importer-cn.png" alt="NotebookLM Batch Importer 主界面" 
+                                 class="max-w-full h-auto">
+                            <div class="absolute bottom-16 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
+                                <h4 class="text-xl font-semibold mb-2" data-i18n="screenshots.main.title">主界面 - 批量导入功能</h4>
+                                <p class="text-sm" data-i18n="screenshots.main.description">简洁的主界面支持批量链接和播放列表两种模式，实时显示链接解析状态</p>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-slide text-center" data-lang="zh" data-slide="1" style="display: none;">
+                            <img src="https://raw.githubusercontent.com/talkgo/learning/main/images/import-history-cn.png" alt="导入历史记录界面" 
+                                 class="max-w-full h-auto">
+                            <div class="absolute bottom-16 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
+                                <h4 class="text-xl font-semibold mb-2" data-i18n="screenshots.history.title">导入历史 - 详细记录</h4>
+                                <p class="text-sm" data-i18n="screenshots.history.description">完整的导入历史记录，显示每次导入的详细信息，包括导入时间、视频数量、成功状态等</p>
+                            </div>
+                        </div>
+                        
+                        <!-- English screenshots (4 slides) -->
+                        <div class="carousel-slide text-center" data-lang="en" data-slide="0" style="display: none;">
+                            <img src="https://raw.githubusercontent.com/talkgo/learning/main/images/notebooklm-batch-importer-interface-en.png" alt="NotebookLM Batch Importer Main Interface" 
+                                 class="max-w-full h-auto">
+                            <div class="absolute bottom-16 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
+                                <h4 class="text-xl font-semibold mb-2" data-i18n="screenshots.main.title">Main Interface - Batch Import Feature</h4>
+                                <p class="text-sm" data-i18n="screenshots.main.description">Clean main interface supports both batch links and playlist modes with real-time link parsing status</p>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-slide text-center" data-lang="en" data-slide="1" style="display: none;">
+                            <img src="https://raw.githubusercontent.com/talkgo/learning/main/images/notebooklm-batch-importer-in-progress-en.png" alt="Import Progress Interface" 
+                                 class="max-w-full h-auto">
+                            <div class="absolute bottom-16 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
+                                <h4 class="text-xl font-semibold mb-2" data-i18n="screenshots.progress.title">Import Progress - Real-time Status</h4>
+                                <p class="text-sm" data-i18n="screenshots.progress.description">Real-time progress tracking with detailed status information and import controls</p>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-slide text-center" data-lang="en" data-slide="2" style="display: none;">
+                            <img src="https://raw.githubusercontent.com/talkgo/learning/main/images/notebooklm-batch-importer-history-en.png" alt="Import History Interface" 
+                                 class="max-w-full h-auto">
+                            <div class="absolute bottom-16 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
+                                <h4 class="text-xl font-semibold mb-2" data-i18n="screenshots.history.title">Import History - Detailed Records</h4>
+                                <p class="text-sm" data-i18n="screenshots.history.description">Complete import history records showing detailed information for each import session</p>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-slide text-center" data-lang="en" data-slide="3" style="display: none;">
+                            <img src="https://raw.githubusercontent.com/talkgo/learning/main/images/notebooklm-assistant-playlist-en.png" alt="Playlist Assistant Interface" 
+                                 class="max-w-full h-auto">
+                            <div class="absolute bottom-16 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
+                                <h4 class="text-xl font-semibold mb-2" data-i18n="screenshots.playlist.title">Playlist Assistant - Smart Extraction</h4>
+                                <p class="text-sm" data-i18n="screenshots.playlist.description">Intelligent playlist detection and video link extraction for seamless batch processing</p>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Import History Screenshot -->
-                    <div class="carousel-slide text-center">
-                        <img src="https://raw.githubusercontent.com/talkgo/learning/main/images/import-history.png" alt="导入历史记录界面" 
-                             class="max-w-full h-auto">
-                        <div class="absolute bottom-16 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
-                            <h4 class="text-xl font-semibold mb-2" data-i18n="screenshots.history.title">导入历史 - 详细记录</h4>
-                            <p class="text-sm" data-i18n="screenshots.history.description">完整的导入历史记录，显示每次导入的详细信息，包括导入时间、视频数量、成功状态等</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Navigation dots -->
-                    <div class="carousel-nav">
-                        <div class="carousel-dot active" data-slide="0"></div>
-                        <div class="carousel-dot" data-slide="1"></div>
+                    <!-- Navigation dots will be dynamically generated -->
+                    <div id="carousel-nav" class="carousel-nav">
+                        <!-- Dots will be generated by JavaScript -->
                     </div>
                 </div>
             </div>
@@ -794,7 +830,7 @@
                     <!-- Twitter/X -->
                     <div class="text-center">
                         <div class="w-20 h-20 mx-auto mb-3 bg-white bg-opacity-20 rounded-xl flex items-center justify-center overflow-hidden">
-                            <img src="https://raw.githubusercontent.com/talkgo/learning/main/images/maiyangai-x.jpg" alt="MaiYangAI X Profile" class="w-16 h-16 rounded-lg object-cover">
+                            <img src="dist/maiyangai-x.jpg" alt="MaiYangAI X Profile" class="w-16 h-16 rounded-lg object-cover">
                         </div>
                         <p class="text-red-50 text-sm font-semibold mb-1" data-i18n="download.contact.twitter.title">𝕏 Twitter</p>
                         <a href="https://x.com/MaiYangAI" target="_blank" 
@@ -879,8 +915,6 @@
                 </div>
             </div>
             
-            <div class="table-footer" style="text-align: center; padding: 12px; width: 100%; color: rgba(0, 0, 0, 0.5); background: rgba(0, 0, 0, 0.05);">Total Page Views: <span id="urlstat-page-pv"><!-- info will be inserted --></span>, Total User Views: <span id="urlstat-page-uv"><!-- info will be inserted --></span></div>
-            </div>
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
                 <p data-i18n="footer.copyright">&copy; 2025 NotebookLM Batch Importer. 开发者：杨文 Mai Yang</p>
                 <p class="mt-2 text-sm" data-i18n="footer.terms">
@@ -970,9 +1004,17 @@
                         title: "主界面 - 批量导入功能",
                         description: "简洁的主界面支持批量链接和播放列表两种模式，实时显示链接解析状态"
                     },
+                    progress: {
+                        title: "导入进度 - 实时状态",
+                        description: "实时进度跟踪，显示详细的导入状态信息和控制选项"
+                    },
                     history: {
                         title: "导入历史 - 详细记录",
                         description: "完整的导入历史记录，显示每次导入的详细信息，包括导入时间、视频数量、成功状态等"
+                    },
+                    playlist: {
+                        title: "播放列表助手 - 智能提取",
+                        description: "智能播放列表检测和视频链接提取，实现无缝批量处理"
                     }
                 },
                 howto: {
@@ -1193,9 +1235,17 @@
                         title: "Main Interface - Batch Import Feature",
                         description: "Clean main interface supports both batch links and playlist modes, with real-time link parsing status"
                     },
+                    progress: {
+                        title: "Import Progress - Real-time Status",
+                        description: "Real-time progress tracking with detailed status information and import controls"
+                    },
                     history: {
                         title: "Import History - Detailed Records",
                         description: "Complete import history records showing detailed information for each import, including import time, video count, success status, etc."
+                    },
+                    playlist: {
+                        title: "Playlist Assistant - Smart Extraction",
+                        description: "Intelligent playlist detection and video link extraction for seamless batch processing"
                     }
                 },
                 howto: {
@@ -1410,6 +1460,9 @@
 
                 // Update document title and meta tags
                 this.updateMetaTags();
+                
+                // Update screenshots based on language
+                this.updateScreenshots();
             }
 
             updateMetaTags() {
@@ -1426,6 +1479,13 @@
                 const metaDescription = document.querySelector('meta[name="description"]');
                 if (metaDescription) {
                     metaDescription.setAttribute('content', description);
+                }
+            }
+
+            updateScreenshots() {
+                // Update carousel language if it exists
+                if (window.carouselInstance) {
+                    window.carouselInstance.setLanguage(this.currentLanguage);
                 }
             }
 
@@ -1508,22 +1568,14 @@
         // Carousel functionality
         class Carousel {
             constructor() {
-                this.slides = document.querySelectorAll('.carousel-slide');
-                this.dots = document.querySelectorAll('.carousel-dot');
                 this.currentSlide = 0;
                 this.autoPlayInterval = null;
+                this.currentLanguage = 'zh';
                 
                 this.init();
             }
             
             init() {
-                // Add click listeners to dots
-                this.dots.forEach((dot, index) => {
-                    dot.addEventListener('click', () => {
-                        this.goToSlide(index);
-                    });
-                });
-                
                 // Start auto-play
                 this.startAutoPlay();
                 
@@ -1535,40 +1587,73 @@
                 }
             }
             
-            goToSlide(index) {
+            setLanguage(lang) {
+                this.currentLanguage = lang;
+                this.currentSlide = 0;
+                this.updateDisplay();
+            }
+            
+            getCurrentSlides() {
+                return document.querySelectorAll(`.carousel-slide[data-lang="${this.currentLanguage}"]`);
+            }
+            
+            updateDisplay() {
                 // Hide all slides
-                this.slides.forEach(slide => {
+                const allSlides = document.querySelectorAll('.carousel-slide');
+                allSlides.forEach(slide => {
                     slide.classList.remove('active');
+                    slide.style.display = 'none';
                 });
                 
-                // Remove active class from all dots
-                this.dots.forEach(dot => {
-                    dot.classList.remove('active');
+                // Show only current language slides
+                const currentSlides = this.getCurrentSlides();
+                if (currentSlides.length > 0) {
+                    const targetIndex = Math.min(this.currentSlide, currentSlides.length - 1);
+                    currentSlides[targetIndex].classList.add('active');
+                    currentSlides[targetIndex].style.display = 'block';
+                    this.currentSlide = targetIndex;
+                }
+                
+                // Update dots
+                this.updateDots();
+            }
+            
+            updateDots() {
+                const navContainer = document.getElementById('carousel-nav');
+                if (!navContainer) return;
+                
+                navContainer.innerHTML = '';
+                const currentSlides = this.getCurrentSlides();
+                
+                currentSlides.forEach((slide, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = `carousel-dot ${index === this.currentSlide ? 'active' : ''}`;
+                    dot.addEventListener('click', () => this.goToSlide(index));
+                    navContainer.appendChild(dot);
                 });
-                
-                // Show current slide
-                if (this.slides[index]) {
-                    this.slides[index].classList.add('active');
+            }
+            
+            goToSlide(index) {
+                const currentSlides = this.getCurrentSlides();
+                if (index >= 0 && index < currentSlides.length) {
+                    this.currentSlide = index;
+                    this.updateDisplay();
                 }
-                
-                // Activate current dot
-                if (this.dots[index]) {
-                    this.dots[index].classList.add('active');
-                }
-                
-                this.currentSlide = index;
             }
             
             nextSlide() {
-                const nextIndex = (this.currentSlide + 1) % this.slides.length;
-                this.goToSlide(nextIndex);
+                const currentSlides = this.getCurrentSlides();
+                if (currentSlides.length > 1) {
+                    this.currentSlide = (this.currentSlide + 1) % currentSlides.length;
+                    this.updateDisplay();
+                }
             }
             
             startAutoPlay() {
                 this.stopAutoPlay();
                 this.autoPlayInterval = setInterval(() => {
                     this.nextSlide();
-                }, 4000); // Change slide every 4 seconds
+                }, 4000);
             }
             
             stopAutoPlay() {
@@ -1598,9 +1683,11 @@
             // Initialize internationalization
             i18nInstance = new I18n();
             
-            // Initialize carousel
+            // Initialize carousel with correct language
             if (document.querySelector('.carousel-container')) {
-                new Carousel();
+                window.carouselInstance = new Carousel();
+                // Set carousel language to match detected language
+                window.carouselInstance.setLanguage(i18nInstance.currentLanguage);
             }
             
             // Observe all feature cards and screenshots
