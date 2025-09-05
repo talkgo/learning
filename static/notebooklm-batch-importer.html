@@ -38,6 +38,9 @@
     <meta name="msapplication-TileColor" content="#ff4444">
     <meta name="application-name" content="NotebookLM Batch Importer">
     
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="XtWHShMRga-DDnjbS7PIOFzvEknh_rCsk2xYRkHE9_Q" />
+    
     <!-- Canonical URL -->
     <link rel="canonical" href="https://talkgo.dev/notebooklm-batch-importer">
     
@@ -255,6 +258,16 @@
             transform: scale(1.2);
         }
     </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-874MTRGCY1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-874MTRGCY1');
+    </script>
 </head>
 <body class="bg-gray-50">
     <!-- Header -->
@@ -272,7 +285,7 @@
                     <a href="#demo" class="text-gray-600 hover:text-gray-900 transition-colors">演示视频</a>
                     <a href="#screenshots" class="text-gray-600 hover:text-gray-900 transition-colors">界面展示</a>
                     <a href="#install" class="text-gray-600 hover:text-gray-900 transition-colors">安装指南</a>
-                    <a href="#download" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all">立即下载</a>
+                    <a href="https://chromewebstore.google.com/detail/cjeihogcjiinnkhgmgfceponineeghld" target="_blank" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all">立即下载</a>
                 </nav>
             </div>
         </div>
@@ -290,7 +303,7 @@
                     一键批量导入YouTube视频到NotebookLM，支持播放列表提取，将原本需要几十分钟的重复操作缩短到几秒钟
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#download" class="bg-white text-red-500 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg">
+                    <a href="https://chromewebstore.google.com/detail/cjeihogcjiinnkhgmgfceponineeghld" target="_blank" class="bg-white text-red-500 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg">
                         🚀 免费下载扩展
                     </a>
                     <a href="#demo" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-red-500 transition-colors">
@@ -559,32 +572,24 @@
                         <div class="flex items-start space-x-4">
                             <div class="flex-shrink-0 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-semibold">1</div>
                             <div>
-                                <h4 class="font-semibold text-gray-900 mb-2">下载扩展文件</h4>
-                                <p class="text-gray-600">联系开发者获取最新版本的扩展压缩包，或前往Chrome Web Store下载</p>
+                                <h4 class="font-semibold text-gray-900 mb-2">访问Chrome Web Store</h4>
+                                <p class="text-gray-600">前往 <a href="https://chromewebstore.google.com/detail/cjeihogcjiinnkhgmgfceponineeghld" target="_blank" class="text-red-500 underline hover:text-red-600">Chrome Web Store</a> 官方扩展页面</p>
                             </div>
                         </div>
                         
                         <div class="flex items-start space-x-4">
                             <div class="flex-shrink-0 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-semibold">2</div>
                             <div>
-                                <h4 class="font-semibold text-gray-900 mb-2">打开Chrome扩展管理</h4>
-                                <p class="text-gray-600">在Chrome浏览器中访问 <code class="bg-gray-200 px-2 py-1 rounded">chrome://extensions/</code></p>
+                                <h4 class="font-semibold text-gray-900 mb-2">点击"添加至Chrome"</h4>
+                                <p class="text-gray-600">在扩展页面点击蓝色的"添加至Chrome"按钮</p>
                             </div>
                         </div>
                         
                         <div class="flex items-start space-x-4">
                             <div class="flex-shrink-0 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-semibold">3</div>
                             <div>
-                                <h4 class="font-semibold text-gray-900 mb-2">启用开发者模式</h4>
-                                <p class="text-gray-600">点击右上角的"开发者模式"开关（仅本地安装需要）</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-semibold">4</div>
-                            <div>
-                                <h4 class="font-semibold text-gray-900 mb-2">加载扩展</h4>
-                                <p class="text-gray-600">点击"加载已解压的扩展程序"，选择解压后的文件夹</p>
+                                <h4 class="font-semibold text-gray-900 mb-2">确认安装</h4>
+                                <p class="text-gray-600">在弹出的确认对话框中点击"添加扩展程序"</p>
                             </div>
                         </div>
                         
@@ -779,15 +784,22 @@
                             <i class="fab fa-chrome text-3xl text-white"></i>
                         </div>
                         <p class="text-red-50 text-sm font-semibold mb-1"><i class="fas fa-store"></i> Chrome Store</p>
-                        <p class="text-red-50 text-xs">即将上线</p>
-                        <p class="text-red-50 text-xs">敬请期待</p>
+                        <a href="https://chromewebstore.google.com/detail/cjeihogcjiinnkhgmgfceponineeghld" 
+                           target="_blank"
+                           class="text-red-50 text-xs hover:text-white transition-colors underline">
+                            立即下载
+                        </a>
+                        <p class="text-red-50 text-xs">官方扩展商店</p>
                     </div>
                 </div>
             </div>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="bg-white text-red-500 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"
-                        onclick="alert('请扫描上方二维码添加开发者微信获取最新版本')">
+                <a href="https://chromewebstore.google.com/detail/cjeihogcjiinnkhgmgfceponineeghld" target="_blank" class="bg-white text-red-500 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg">
+                    🚀 Chrome商店下载
+                </a>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-red-500 transition-colors"
+                        onclick="alert('如需技术支持，请扫描上方二维码添加开发者微信')">
                     💬 联系开发者
                 </button>
                 <a href="#install" 
